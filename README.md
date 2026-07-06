@@ -1,22 +1,19 @@
-# Structural Causal Architecture of Macroeconomics
+# Structural Causal Architecture & Live Dashboard
 
-## Objective
-Standard regression models suffer from severe endogeneity and omitted variable bias when analyzing macroeconomic systems. This project utilizes constraint-based structure learning to discover the true causal topology between global macro proxies and the Nifty Bank Index.
+## 🚀 Access the Live Dashboard
+**[Click here to launch the Quant Macro Dashboard](YOUR_SHINYAPPS_IO_URL_HERE)**
 
-## Methodology
-Instead of relying on basic correlation, this pipeline utilizes a **Directed Acyclic Graph (DAG)** via the Hill-Climbing machine learning algorithm to strip away noise and reveal underlying structural edges. 
+## Project Overview
+This repository contains the architecture for a real-time macroeconomic causal inference engine. While the core research was conducted using **Constraint-Based Structure Learning** via the Hill-Climbing algorithm, the architecture has been evolved into a live production dashboard.
 
-To ensure the discovered topology is not a statistical anomaly, the network structure is stress-tested using **non-parametric bootstrap resampling** (100 iterations) to confirm the strength and directionality of the edges.
+## Key Features (v3.2)
+* **Global Macro Engine:** Now supports dynamic ticker input for any global asset, moving beyond the original Nifty Bank focus.
+* **Continuous Allocation:** Implemented a continuous NLP sentiment scaling engine (replacing rigid buckets) to provide precision portfolio weights.
+* **Spurious Correlation Removal:** All historical data is now processed via daily log-returns to strip time-series trends and reveal true structural edges.
+* **Tail-Risk Awareness:** Utilizes Bayesian Network boot-strapping to confirm edge robustness in real-time.
 
-## Actionable Takeaway
-Using Gold (`GLD`) as a live market proxy for inflation expectations and the US 10-Year Treasury (`^TNX`) as a global yield benchmark, the causal architecture mathematically proves that Yields and Inflation are root drivers of bank equity valuations. 
-
-Because the inflation proxy possesses a direct, causal edge to the Nifty Bank index, the implied portfolio strategy is to dynamically increase interest-rate hedges in the 72 hours preceding a projected hot CPI print, as the structural topology dictates downstream damage to bank valuations.
-
-## Tech Stack & Data
+## Tech Stack
 * **Language:** R
-* **Libraries:** `quantmod` (Financial Data API), `bnlearn` (Bayesian Network Learning), `knitr`
-* **Data Sources:** Live API extraction via Yahoo Finance
-
----
-*Note: A fully compiled PDF of the research report, including the generated DAG and bootstrap confidence tables, is available in this repository.*
+* **Framework:** Shiny
+* **Libraries:** `bnlearn` (Bayesian Learning), `quantmod` (Financial Data), `syuzhet` (NLP Sentiment), `rvest` (Web Scraping)
+* **Deployment:** ShinyApps.io
