@@ -1,7 +1,7 @@
 # Structural Causal Architecture & Live Dashboard
 
 ## 🚀 Access the Live Dashboard
-**[Click here to launch the Quant Macro Dashboard](YOUR_SHINYAPPS_IO_URL_HERE)**
+**[Click here to launch the Quant Macro Dashboard](https://quant-portfolio.shinyapps.io/Macro-Econometrics-Report/)**
 
 ## Project Overview
 This repository contains the architecture for a real-time macroeconomic causal inference engine. While the core research was conducted using **Constraint-Based Structure Learning** via the Hill-Climbing algorithm, the architecture has been evolved into a live production dashboard.
