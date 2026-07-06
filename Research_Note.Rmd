@@ -1,0 +1,37 @@
+---
+title: "Structural Causal Architecture of Macroeconomics"
+author: "Quantitative Researcher"
+date: "July 2026"
+output: html_document
+---
+
+## Executive Summary
+Standard regression models suffer from severe endogeneity and omitted variable bias when analyzing macroeconomic systems. To isolate true structural impacts, this research utilizes constraint-based structure learning to discover the causal topology between Yields, Inflation proxies, and the Nifty Bank Index.
+
+```{r setup, message=FALSE, warning=FALSE, echo=FALSE}
+library(quantmod)
+library(bnlearn)
+library(knitr)
+
+set.seed(100)
+
+# 1. Fetch Daily Bank Index (Yahoo Finance)
+suppressWarnings(getSymbols("^NSEBANK", src = "yahoo", from = "2015-01-01", to = Sys.Date()))
+
+# 2. Fetch Real Macro Proxies (Yahoo Finance - NO API KEY REQUIRED)
+# ^TNX = US 10-Year Yield (Global Yield Benchmark)
+# GLD = SPDR Gold Trust (Classic Inflation Proxy)
+suppressWarnings(getSymbols(c("^TNX", "GLD"), src = "yahoo", from = "2015-01-01", to = Sys.Date()))
+
+# 3. Merge and Clean 
+merged_data <- merge(Ad(NSEBANK), Ad(TNX), Ad(GLD))
+merged_data <- na.omit(merged_data) 
+
+# 4. Format for the Causal Engine
+causal_df <- data.frame(merged_data)
+colnames(causal_df) <- c("Bank", "Yield", "Inflation_Proxy")
+dag <- bnlearn::hc(causal_df)
+plot(dag, main = "Macroeconomic Causal Network")
+strength <- bnlearn::boot.strength(causal_df, R = 100, algorithm = "hc")
+top_relationships <- head(strength[order(-strength$strength), ])
+kable(top_relationships, row.names = FALSE, digits = 3)
